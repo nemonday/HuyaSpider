@@ -50,7 +50,7 @@ def Adfly():
         opt.add_argument("--proxy-server={}".format(proxies['https']))
         # prefs = {"profile.managed_default_content_settings.images": 2}
         # opt.add_experimental_option("prefs", prefs)
-        broser = webdriver.Chrome('/root/ddm/test/chromedriver', options=opt)
+        broser = webdriver.Chrome('/root/chromedriver', options=opt)
         wait = WebDriverWait(broser, 20, 0.5)
 
         for i in range(3):
