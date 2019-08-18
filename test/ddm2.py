@@ -38,6 +38,7 @@ def Adfly():
     try:
         opt.add_argument('--headless')
         opt.add_argument('--disable-gpu')
+        opt.add_argument('--no-sandbox')
 
         proxy_url = 'http://http.tiqu.alicdns.com/getip3?num=1&type=2&pro=0&city=0&yys=0&port=2&time=1&ts=0&ys=0&cs=0&lb=1&sb=0&pb=4&mr=1&regions='
         proxy = requests.get(proxy_url)
