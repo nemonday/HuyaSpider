@@ -2,6 +2,7 @@ import time
 
 from selenium import webdriver
 
+
 def ddm():
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--headless')
@@ -9,7 +10,6 @@ def ddm():
     chrome_options.add_argument('--no-sandbox')  # 这个配置很重要
     client = webdriver.Chrome(chrome_options=chrome_options,
                               executable_path='/root/ddm/test/chromedriver')  # 如果没有把chromedriver加入到PATH中，就需要指明路径
-
 
     for i in range(3):
         urls2 = 'http://dd.ma/4XmpxwTg'
@@ -21,6 +21,7 @@ def ddm():
         time.sleep(1)
 
     client.quit()
+
 
 while True:
     ddm()
