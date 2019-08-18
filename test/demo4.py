@@ -1,50 +1,13 @@
-import time
-from random import choice
-from threading import Thread
+from selenium import webdriver
 
-import pymysql
-import requests
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument('--headless')
+chrome_options.add_argument('--disable-gpu')
+chrome_options.add_argument('--no-sandbox')  # 这个配置很重要
+client = webdriver.Chrome(chrome_options=chrome_options,
+                          executable_path='/home/chromedriver')  # 如果没有把chromedriver加入到PATH中，就需要指明路径
 
-from Parameter import PC_USER_ANGENT_LIST
+client.get("https://www.baidu.com")
+print(client.page_source.encode('utf-8'))
 
-
-def getinfo():
-    while True:
-        try:
-            time.sleep(3)
-            connection = pymysql.connect(
-                host='127.0.0.1',
-                port=3306,
-                user='root',
-                password='pythonman',
-                db='proxy',
-                charset='utf8')
-
-            sql = 'select * from zmproxy where id=1'
-            cursor = connection.cursor()
-            cursor.execute(sql)
-            proxys = cursor.fetchall()
-
-            for proxy in proxys:
-                proxies = {
-                    'https': proxy[1]
-                }
-
-
-                user_angent = choice(PC_USER_ANGENT_LIST)
-
-                headers = {
-                    'User-Agent': user_angent
-
-                }
-                rep = requests.get('http://www.kkwwn.com/2019/08/15/hello-world/', proxies=proxies, headers=headers)
-                print(rep)
-        except:
-            pass
-
-thread_01 = Thread(target=getinfo)
-thread_02 = Thread(target=getinfo)
-thread_01.start()
-thread_02.start()
-
-
+client.quit()
