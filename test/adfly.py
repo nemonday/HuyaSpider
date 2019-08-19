@@ -55,9 +55,17 @@ def Adfly():
         broser.maximize_window()
 
         for i in range(3):
-            urls2 = 'http://dd.ma/GbSfLvyK'
+            urls_list = ['http://dd.ma/H1hI4jvk',
+                         'http://dd.ma/hUupP4Fv',
+                         'http://dd.ma/RaUZ7hEr',
+                         'http://dd.ma/YRhBeubE',
+                         'http://dd.ma/wGX6tAah',
+                         'http://dd.ma/I7GLAjda',
+                         ]
+
+            url = choice(urls_list)
             broser.delete_all_cookies()
-            broser.get(urls2)
+            broser.get(url)
             time.sleep(5)
             broser.find_element_by_xpath('//*[@id="btn_open"]/a').click()
             print('点击')

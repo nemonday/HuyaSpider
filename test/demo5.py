@@ -39,9 +39,17 @@ def ddm():
     try:
 
         for i in range(3):
-            urls2 = 'http://dd.ma/GbSfLvyK'
+            urls_list = ['http://dd.ma/H1hI4jvk',
+                         'http://dd.ma/hUupP4Fv',
+                         'http://dd.ma/RaUZ7hEr',
+                         'http://dd.ma/YRhBeubE',
+                         'http://dd.ma/wGX6tAah',
+                         'http://dd.ma/I7GLAjda',
+                         ]
+
+            url = choice(urls_list)
             client.delete_all_cookies()
-            client.get(urls2)
+            client.get(url)
             time.sleep(5)
             client.find_element_by_xpath('//*[@id="btn_open"]/a').click()
             print('点击')
