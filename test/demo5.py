@@ -52,7 +52,7 @@ def ddm():
             client.get(url)
             time.sleep(5)
             client.find_element_by_xpath('//*[@id="btn_open"]/a').click()
-            print('点击')
+            print('点击:{}'.format(url))
             time.sleep(1)
 
         client.quit()
