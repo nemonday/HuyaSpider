@@ -40,34 +40,33 @@ def Adfly():
     try:
         # opt.add_argument('--headless')
 
-        proxy_url = 'http://http.tiqu.alicdns.com/getip3?num=1&type=2&pro=0&city=0&yys=0&port=2&time=1&ts=0&ys=0&cs=0&lb=1&sb=0&pb=4&mr=1&regions='
-        proxy = requests.get(proxy_url)
-        print(proxy.text)
-        proxy = json.loads(proxy.text)['data'][0]
-        proxies = {
-            'https': 'http://{0}:{1}'.format(proxy['ip'], proxy['port'])
-        }
-
+        # proxy_url = 'http://http.tiqu.alicdns.com/getip3?num=1&type=2&pro=0&city=0&yys=0&port=2&time=1&ts=0&ys=0&cs=0&lb=1&sb=0&pb=4&mr=1&regions='
+        # proxy = requests.get(proxy_url)
+        # print(proxy.text)
+        # proxy = json.loads(proxy.text)['data'][0]
+        # proxies = {
+        #     'https': 'http://{0}:{1}'.format(proxy['ip'], proxy['port'])
+        # }
+        url = 'http://ged.ip3366.net/api/?key=20190820084107625&getnum=1&isp=1&anonymoustype=3&filter=1&area=1&order=1'
+        rsp = requests.get(url)
         # proxies = {
         #     'https': 'http://5.58.167.211:39936'
         # }
-        opt.add_argument("--proxy-server={}".format(proxies['https']))
+        opt.add_argument("--proxy-server={}".format(rsp.text))
         # prefs = {"profile.managed_default_content_settings.images": 2}
         # opt.add_experimental_option("prefs", prefs)
         broser = webdriver.Chrome(options=opt)
         wait = WebDriverWait(broser, 20, 0.5)
-        broser.maximize_window()
 
-        for i in range(2):
-            urls_list = ['http://tenteaea.com/1SdB' ]
+        urls_list = ['http://dd.ma/yMexDitA' ]
 
-            url = choice(urls_list)
-            broser.delete_all_cookies()
-            broser.get(url)
-            time.sleep(1)
-            broser.find_element_by_xpath('//*[@id="btn_open"]/a').click()
-            print('点击 {}'.format(url))
-            time.sleep(1)
+        url = choice(urls_list)
+        broser.delete_all_cookies()
+        broser.get(url)
+        time.sleep(1)
+        broser.find_element_by_xpath('//*[@id="btn_open2"]/a').click()
+        print('点击 {}'.format(url))
+        time.sleep(1)
         broser.quit()
     except:
         broser.quit()
