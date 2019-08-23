@@ -6,7 +6,36 @@ import requests
 from selenium import webdriver
 
 
+class Print(object):
+    @staticmethod
+    def info(message):
+        out_message =  Print.timeStamp() + '  ' + 'INFO: ' +str(message)
+        Print.write(out_message)
+        print(out_message)
+
+    @staticmethod
+    def error(message):
+        out_message = Print.timeStamp() + '  ' + 'ERROR: ' + str(message)
+        Print.write(out_message)
+        print(out_message)
+
+    @staticmethod
+    def write(message):
+        LOG_DIRECTORY = "./"
+        log_path = os.path.join(LOG_DIRECTORY, 'log.txt')
+        with open(log_path,'a+') as f:
+            f.write(message)
+            f.write('\n')
+
+    @staticmethod
+    def timeStamp():
+        local_time = time.localtime(time.time())
+        return time.strftime("%Y_%m_%d-%H_%M_%S", local_time)
+
 def Adfly():
+    proxy_working_num = 0
+    proxy_notworking = 0
+
     url = 'https://proxy.horocn.com/api/proxies?order_id=DXSN1642674010105319&num=3&format=json&line_separator=win&can_repeat=no'
     rsp = requests.get(url)
     proxys = json.loads(rsp.text)
@@ -36,23 +65,27 @@ def Adfly():
 
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--disable-gpu')
-        # chrome_options.add_argument('--no-sandbox')  # 这个配置很重要
+        chrome_options.add_argument('--no-sandbox')  # 这个配置很重要
         client = webdriver.Chrome(chrome_options=chrome_options,
                                   executable_path='/root/ddm/test/chromedriver'
                                   )  # 如果没有把chromedriver加入到PATH中，就需要指明路径
 
-        client.set_page_load_timeout(5)  # 5秒
+        client.set_page_load_timeout(10)  # 5秒
 
         try:
             url = 'http://tenteaea.com/1SdB'
             client.delete_all_cookies()
             client.get(url)
             time.sleep(1)
-            client.find_element_by_xpath('//*[@id="u1"]/a[1]').click()
-            print('代理成功访问')
+            proxy_working_num +=1
+
+            Print.info('代理有效: {}'.format(proxy_working_num))
+            print('代理有效: {}'.format(proxy_working_num))
             client.quit()
         except:
-            print('代理失效退出')
+            proxy_notworking +=1
+            Print.error('代理失效退出 {}'.format(proxy_notworking))
+            print('代理失效退出 {}'.format(proxy_notworking))
             client.quit()
 
 while True:
