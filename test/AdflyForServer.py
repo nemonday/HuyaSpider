@@ -74,10 +74,10 @@ def Adfly():
         client.set_page_load_timeout(10)  # 5秒
 
         try:
-            url = 'http://tenteaea.com/1SdB'
+            url = 'http://tenteaea.com/3dSW'
             client.delete_all_cookies()
             client.get(url)
-            time.sleep(1)
+            time.sleep(5)
             proxy_working_num +=1
 
             Print.info('代理有效: {}'.format(proxy_working_num))

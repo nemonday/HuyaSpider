@@ -29,18 +29,18 @@ def Adfly():
         # 随机请求头
         user_angent = choice(PC_USER_ANGENT_LIST)
         opt.add_argument('user-agent=%s'% user_angent)
-        proxys = '--proxy-server=http://{}:{}'.format(host, port)
-        opt.add_argument(proxys)
+        # proxys = '--proxy-server=http://{}:{}'.format(host, port)
+        # opt.add_argument(proxys)
         # opt.add_argument('Proxy-Authorization={}'.format(auth))
         # opt.add_argument('--proxy-server=http://forward.xdaili.cn:80')
-        prefs = {"profile.managed_default_content_settings.images": 2}
-        opt.add_experimental_option("prefs", prefs)
+        # prefs = {"profile.managed_default_content_settings.images": 2}
+        # opt.add_experimental_option("prefs", prefs)
         # opt.add_argument('--headless')
 
         try:
             broser = webdriver.Chrome(options=opt)
             broser.set_script_timeout(3)
-            url = 'http://tenteaea.com/1SdB'
+            url = 'http://festyy.com/w3I1PT'
             broser.delete_all_cookies()
             broser.get(url)
             time.sleep(1)
