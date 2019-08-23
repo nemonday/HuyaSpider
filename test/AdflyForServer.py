@@ -49,10 +49,10 @@ def Adfly():
             client.get(url)
             time.sleep(1)
             client.find_element_by_xpath('//*[@id="u1"]/a[1]').click()
-            print('点击:{}'.format(url))
+            print('代理成功访问')
             client.quit()
         except:
-            # client.execute_script('window.stop()')      # 执行Javascript来停止页面加载 window.stop()
+            print('代理失效退出')
             client.quit()
 
 while True:
