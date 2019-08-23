@@ -1,12 +1,13 @@
+import json
+
 import requests
 
-url = 'http://ged.ip3366.net/api/?key=20190820084107625&getnum=1&isp=1&anonymoustype=3&filter=1&area=1&order=1&proxytype=2'
-
+url = 'https://proxy.horocn.com/api/proxies?order_id=DXSN1642674010105319&num=3&format=json&line_separator=win&can_repeat=no'
 rsp = requests.get(url)
-num = 0
-for i in rsp.text.split(','):
-    num += 1
-    print(i)
-    print(num)
+proxys = json.loads(rsp.text)
 
+for proxy in proxys:
+    host = proxy['host']
+    port = proxy['port']
 
+    print(host, port)
